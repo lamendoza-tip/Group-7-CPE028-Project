@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context=".ControlsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/pdbg1">
+
+        <TextView
+            android:id="@+id/parTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="64dp"
+            android:fontFamily="cursive"
+            android:text="Controls"
+            android:textSize="60sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="409dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/sprinkler"
+            android:layout_width="194dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="109dp"
+            android:layout_marginLeft="109dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="109dp"
+            android:layout_marginRight="109dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Sprinkler"
+            android:textSize="34sp"
+            app:chipBackgroundColor="#BFD1AF"
+            app:chipIcon="@drawable/soil_icon_36259"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/awg" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/awg"
+            android:layout_width="125dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="144dp"
+            android:layout_marginLeft="144dp"
+            android:layout_marginTop="63dp"
+            android:layout_marginEnd="143dp"
+            android:layout_marginRight="143dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="AWG"
+            android:textSize="34sp"
+            app:chipBackgroundColor="#BFD1AF"
+            app:chipIcon="@drawable/water"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/parTxt" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

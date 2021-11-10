@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.ortua_app.ParametersFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/pdbg1">
+
+        <TextView
+            android:id="@+id/parTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="cursive"
+            android:text="Parameters"
+            android:textSize="60sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="409dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/parTxt" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/temp"
+            android:layout_width="256dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="51dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginRight="80dp"
+            android:background="#BFD1AF"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Temperature"
+            android:textSize="34sp"
+            app:chipBackgroundColor="#BFD1AF"
+            app:chipIcon="@drawable/tempicon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/sprinkler"
+            android:layout_width="258dp"
+            android:layout_height="73dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginRight="80dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Soil Moisture"
+            android:textSize="34sp"
+            app:chipBackgroundColor="#BFD1AF"
+            app:chipIcon="@drawable/soil_icon_36259"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/temp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/awg"
+            android:layout_width="259dp"
+            android:layout_height="74dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginRight="80dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Water Supply"
+            android:textSize="34sp"
+            app:chipBackgroundColor="#BFD1AF"
+            app:chipIcon="@drawable/water"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sprinkler" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
