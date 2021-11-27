@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+{% block content%}
+
+<br>
+<h1>Register</h1><br>
+
+<h2>Please fill up the form:</h2>
+
+<div class="content-section">
+    <form method="POST" action="">
+        <dl>
+        {{ form.hidden_tag() }}
+        </dl>
+        <dl>
+        {{ form.email(class_="form-inline-input") }}
+        </dl>
+        <dl>
+        {{ form.fullname(class_="form-inline-input") }}
+        </dl>
+        <dl>
+        {{ form.username(class_="form-inline-input") }}
+        </dl>
+        <dl>
+        {{ form.passwd(class_="form-inline-input") }}
+        </dl>
+        <dl>
+        {{ form.submit(class_="form-inline-button") }}
+        </dl>
+         
+    </form>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "home.html" %}
+
+{% block content%}
+{% if current_user.is_authenticated %}
+<h1> Monitoring ...</h1>
+
+{% endif %}
+
+
+  {% if not current_user.is_authenticated %}
+  <br>
+  <div  class="content">
+
+    <h1> IoT-Based Irrigation System </h1>
+  
+  <a href="/registration" class="btn">     Join Us!     </a>
+  </div>
+  <br>
+  {% endif %}
+{% endblock%}
