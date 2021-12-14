@@ -66,6 +66,15 @@ userschema = UserSchema()
 usersschemas = UserSchema(many=True)
 
 
+## ------------ Login form for login html ------------ 
+
+class LoginForm(FlaskForm):
+    username= StringField(validators=[InputRequired(),Length(
+        min=5, max=50)],render_kw={"placeholder":"Enter your username"})
+    passwd= PasswordField(validators=[InputRequired(),Length(
+        min=6, max=50)],render_kw={"placeholder":"Enter your password"})
+
+    submit = SubmitField("Login")
 
 
 ## ------------ Registration form for registration html ------------ 
@@ -90,16 +99,25 @@ class RegisterForm(FlaskForm):
 
 
 
+## ------------ Update form for Account html ------------ 
 
-## ------------ Login form for login html ------------ 
-
-class LoginForm(FlaskForm):
+class UpdateForm(FlaskForm):
+    email= StringField(validators=[InputRequired(),Length(
+        min=5, max=50)],render_kw={"placeholder":"Change Email address"})
+    fullname= StringField(validators=[InputRequired(),Length(
+        min=5, max=50)],render_kw={"placeholder":"Change Full name"})
     username= StringField(validators=[InputRequired(),Length(
-        min=5, max=50)],render_kw={"placeholder":"Enter your username"})
+        min=5, max=50)],render_kw={"placeholder":"Change Username"})
     passwd= PasswordField(validators=[InputRequired(),Length(
-        min=6, max=50)],render_kw={"placeholder":"Enter your password"})
+        min=6, max=50)],render_kw={"placeholder":"Change Password"})
 
-    submit = SubmitField("Login")
+    submit = SubmitField("Update Account")
+
+    def validate_username(self,username):
+        existing_username= Account.query.filter_by(username=username.data).first()
+
+        if existing_username:
+            raise ValidationError("Request denied, the username already exist")
 
 
 
@@ -119,23 +137,6 @@ def monitoring():
     return render_template("monitoring.html")
 
 
-
-
-## ------------ REGISTRATION PART ------------ 
-
-@app.route("/registration", methods = ['GET','POST'])
-def registration():
-    form = RegisterForm()
-    if form.validate_on_submit():
-        encryptpass = bcrypt.generate_password_hash(form.passwd.data)
-        add_user = Account(username=form.username.data,passwd= encryptpass,email=form.email.data,fullname= form.fullname.data)
-        db.session.add(add_user)
-        db.session.commit()
-    return render_template("registration.html",form=form)
-
-
-
-
 ## ------------ LOGIN PART ------------ 
 
 @app.route("/login", methods = ['GET','POST'] )
@@ -152,6 +153,61 @@ def login():
                 return "ERROR"
     return render_template("login.html",form=form)
 
+
+## ------------ REGISTRATION PART ------------ 
+
+@app.route("/registration", methods = ['GET','POST'])
+def registration():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        encryptpass = bcrypt.generate_password_hash(form.passwd.data)
+        add_user = Account(username=form.username.data,passwd= encryptpass,email=form.email.data,fullname= form.fullname.data)
+        db.session.add(add_user)
+        db.session.commit()
+    return render_template("registration.html",form=form)
+
+
+## ------------ ACCOUNT DELETION PART ------------ 
+
+@app.route('/delete', methods = ['GET','POST'])
+def delete():
+    return render_template("delete.html")
+
+@app.route("/delete/account", methods=['GET', 'POST'])
+@login_required
+def deleteacc():
+    acc = Account.query.get(request.form.get('search'))
+    db.session.delete(acc)
+    db.session.commit()
+    return redirect(url_for('main'))
+
+
+## ------------ UPDATE PART ------------ 
+
+@app.route("/update", methods = ['GET','POST'])
+@login_required
+def update():
+    return render_template("update.html")
+
+@app.route("/update/account", methods=['GET', 'POST'])
+@login_required
+def updateacc():
+    
+    form = UpdateForm(request.form, obj=current_user)
+    if form.validate_on_submit():
+        encryptpass = bcrypt.generate_password_hash(form.passwd.data)
+        current_user.email = form.email.data
+        current_user.fullname = form.fullame.data
+        current_user.username = form.username.data
+        current_user.passwd = encryptpass
+
+        db.session.commit()
+        
+        return redirect(url_for('main'))
+    return render_template('update.html', form=form)
+
+
+## ------------ LOGIN PART ------------ 
 
 @app.route('/logout', methods = ['GET','POST'])
 @login_required

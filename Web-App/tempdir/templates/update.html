@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+{% block content%}
+
+<h1>Update</h1><br>
+
+<div class="content-section">
+
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}<br>
+        {{ form.username }}<br><br>
+        {{ form.passwd }}<br><br>
+        {{ form.fullname }}<br><br>
+        {{ form.email }}<br><br>
+        {{ form.submit }}
+    </form>
+         
+
+{% endblock %}

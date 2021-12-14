@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% block content%}
+
+<h1>DELETE USER</h1>
+
+
+    <div class="content-section">
+        <form method="POST" action="/delete/account">     
+            <input type="text" class_="form-inline-input" placeholder="Enter user ID: " name="search">   
+            <button type="submit" class="form-inline-button">Submit</button>     
+        </form>
+
+    </div>
+
+    
+{% endblock %}
+
